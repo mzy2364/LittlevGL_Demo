@@ -4,7 +4,9 @@
 
 基于野牛开发板的 lvgl 6.0 例程，包括控件例程和应用例程
 
-使用介绍：https://www.bilibili.com/video/av78916927
+视频介绍
+
+<a href="https://www.bilibili.com/video/av78916927" target="_blank">https://www.bilibili.com/video/av78916927</a>
 
 <p><img src="http://www.whtiaotu.com/picture/LittlevGL_Demo/lvgl_desktop.png"><p>
 
@@ -71,9 +73,10 @@ git clone https://gitee.com/mzy2364/LittlevGL_Demo
 
 ## 支持我们
 
-官网：www.whtiaotu.com
+官网：<a href="https://www.whtiaotu.com" target="_blank" >https://www.whtiaotu.com</a>
 
-淘宝店：www.whtiaotu.com/mall_taobao.html
+淘宝店：
+<a href="https://www.whtiaotu.com/mall_taobao.html" target="_blank">https://www.whtiaotu.com/mall_taobao.html</a>
 
 QQ交流群：909796874
 

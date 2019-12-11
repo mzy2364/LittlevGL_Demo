@@ -4,6 +4,8 @@
 
 基于野牛开发板的 lvgl 6.0 例程，包括控件例程和应用例程
 
+使用介绍：https://www.bilibili.com/video/av78916927
+
 <p><img src="http://www.whtiaotu.com/picture/LittlevGL_Demo/lvgl_desktop.png"><p>
 
 

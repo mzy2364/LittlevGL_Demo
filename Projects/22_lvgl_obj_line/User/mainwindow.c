@@ -72,12 +72,12 @@ void lv_obj_line_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-
 	lv_obj_t *line1 = lv_line_create(scr, NULL);				/* 创建line控件 */
 	lv_line_set_style(line1, LV_LINE_STYLE_MAIN, &style_line);	/* 设置样式 */
 	lv_line_set_points(line1, line_points, 5);					/* 设置点阵集 */
 	lv_obj_align(line1, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);		/* 设置位置 */
 	lv_line_set_y_invert(line1, true);							/* 反转y,默认是数字大的在下面,反转后数字大的在上面 */
+	
 	create_line_note(line1, scr, line_points, 5);				/* 创建注释 */
 	create_line_point(line1, scr, line_points, 5, 8);			/* 创建点 */
 

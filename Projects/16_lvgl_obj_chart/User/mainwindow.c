@@ -11,7 +11,7 @@
 
 #include "gui_user.h"
 
-uint8_t *list_value_x="0\n1\n2\n3\n4\n5\n6\n7\n\8\n\9";
+uint8_t *list_value_x = "0\n1\n2\n3\n4\n5\n6\n7\n\8\n\9";
 uint8_t *list_value_y = "100\n90\n80\n70\n60\n50\n40\n30\n20\n10\n0";
 
 lv_chart_series_t *ser_cpu;
@@ -95,6 +95,8 @@ void lv_obj_chart_test(void)
 	lv_chart_set_y_tick_texts(chart, list_value_y, 1, LV_CHART_AXIS_DRAW_LAST_TICK);	/* 设置标注的文本 */
 	lv_chart_set_y_tick_length(chart, 10, 10);			/* 刻度线长度 */
 
+
+
 	ser_cpu = lv_chart_add_series(chart,LV_COLOR_RED);		/* 创建线条 */
 	ser_light = lv_chart_add_series(chart, LV_COLOR_BLUE);	/* 创建线条 */
 
@@ -104,7 +106,8 @@ void lv_obj_chart_test(void)
 	lv_obj_t *btn = lv_btn_create(scr,NULL);					/* 创建按钮 */
 	lv_obj_t *label_btn = lv_label_create(btn,NULL);				/* 创建按钮的文本 */
 	lv_label_set_style(label_btn, LV_LABEL_STYLE_MAIN, &style_cn_16);	/* 设置控件样式为中文字体的样式 */
-	lv_label_set_text(label_btn, "开始运算 ");						/* 设置文本 */
+	lv_label_set_text(label_btn, "\xe5\xbc\x80\xe5\xa7\x8b\xe8\xbf\x90\xe7\xae\x97"); /* 设置文本 */
+	//lv_label_set_text(label_btn, "开始运算"); /* 设置文本 */
 	lv_obj_align(btn,chart,LV_ALIGN_OUT_BOTTOM_MID,0,30);		/* 设置位置 */
 	lv_obj_set_event_cb(btn, btn_event);						/* 设置对象事件回调函数 */
 
@@ -119,6 +122,60 @@ void lv_obj_chart_test(void)
 	lv_obj_t *label2 = lv_label_create(scr, label1);				/* 创建label控件 */
 	lv_obj_align(label2, chart, LV_ALIGN_OUT_RIGHT_MID, 0, 10);		/* 设置位置 */
 	lv_label_set_text(label2, "#0000FF BLUE:LIGHT#");				/* 设置文字 */
+
+
+
+	lv_obj_t *chart1 = lv_chart_create(scr, NULL);		/* 创建图表控件 */
+	lv_obj_align(chart1, NULL, LV_ALIGN_IN_TOP_MID, 0, 450);	/* 设置位置 */
+	lv_chart_set_point_count(chart1, 10);					/* 设置显示的点数量 */
+	lv_chart_set_series_width(chart1, 4);					/* 设置线宽度 */
+	lv_chart_set_series_darking(chart1, LV_OPA_TRANSP);
+	lv_chart_set_series_opa(chart1, LV_OPA_COVER);
+	lv_chart_set_range(chart1, 0, 100);					/* 设置范围0-100 */
+	lv_chart_set_div_line_count(chart1, 9, 5);			/* 设置分割线的数量 */
+	lv_chart_set_margin(chart1, 50);						/* 设置标注的扩展长度 */
+	lv_chart_set_type(chart1, LV_CHART_TYPE_POINT | LV_CHART_TYPE_LINE);	/* 显示方式 */
+	lv_chart_set_x_tick_texts(chart1, list_value_x, 2, LV_CHART_AXIS_DRAW_LAST_TICK);	/* 设置标注的文本 */
+	lv_obj_set_size(chart1, 300, 300);						/* 设置控件尺寸 */
+	lv_chart_set_x_tick_length(chart1, 20, 10);			/* 刻度线长度 */
+	lv_chart_set_y_tick_texts(chart1, list_value_y, 1, LV_CHART_AXIS_DRAW_LAST_TICK);	/* 设置标注的文本 */
+	lv_chart_set_y_tick_length(chart1, 10, 10);			/* 刻度线长度 */
+
+
+	/* 创建线条 */
+	lv_chart_series_t * ser1 = lv_chart_add_series(chart1, LV_COLOR_BLUE);
+	lv_chart_series_t * ser2 = lv_chart_add_series(chart1, LV_COLOR_GREEN);
+
+	/* 设置数据序列的值 */
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 10);
+	lv_chart_set_next(chart1, ser1, 30);
+	lv_chart_set_next(chart1, ser1, 70);
+	lv_chart_set_next(chart1, ser1, 90);
+
+	/* 设置数据序列的值 */
+	ser2->points[0] = 90;
+	ser2->points[1] = 70;
+	ser2->points[2] = 30;
+	ser2->points[3] = 50;
+	ser2->points[4] = 65;
+	ser2->points[5] = 65;
+	ser2->points[6] = 65;
+	ser2->points[7] = 65;
+	ser2->points[8] = 65;
+	ser2->points[9] = 65;
+
+	lv_chart_refresh(chart1); /* 刷新图表 */
+
+
+
+
+
 }
 
 void math_test(void)

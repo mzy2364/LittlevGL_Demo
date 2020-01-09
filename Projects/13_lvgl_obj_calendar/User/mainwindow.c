@@ -11,13 +11,13 @@
 
 #include "gui_user.h"
 
-const uint8_t *month_name[12] = {"一月 ","二月 ","三月 ","四月 ","五月 ","六月 ","七月 ","八月 ","九月 ","十月 ","十一月 ","十二月 "};
-
+const uint8_t *month_name[12] = {"01","02","03","04","05","06","07","08","09","10","11","12"};
+const uint8_t *day_name[7] = { "7", "1", "2", "3", "4", "5", "6"};
 
 lv_calendar_date_t today_date = 
 {
 	.year = 2019,
-	.month = 12,
+	.month = 2,
 	.day = 1,
 
 
@@ -36,8 +36,7 @@ void lv_app_main(void)
 {
 
 	lv_load_user_font_from_file();		/* 加载中文字体 */
-	
-	lv_font_cn_style_init();			/* 初始化中文字体 */
+		lv_font_cn_style_init();			/* 初始化中文字体 */
 	
 	lv_obj_calender_test();				/* 日历控件测试 */
 	
@@ -85,11 +84,12 @@ void lv_obj_calender_test(void)
 
 	lv_obj_t *calendar = lv_calendar_create(scr, NULL);				/* 创建日历控件 */
 	lv_style_copy(&style_calendar_header, lv_calendar_get_style(calendar, LV_CALENDAR_STYLE_HEADER));	/* 获取 header 的属性 */
-	style_calendar_header.text.font = style_cn_12.text.font;		/* 设置中文字体 */
+	//style_calendar_header.text.font = style_cn_12.text.font;		/* 设置中文字体 */
 	/* header 设置中文后符号字体显示不是很好 */
 	lv_calendar_set_style(calendar, LV_CALENDAR_STYLE_HEADER, &style_calendar_header);	/* 设置 header 的样式 */
 	lv_obj_align(calendar, NULL, LV_ALIGN_IN_TOP_MID, 0, 10);			/* 设置位置 */
 	lv_calendar_set_month_names(calendar, month_name);					/* 设置月份的名称 */
+	lv_calendar_set_day_names(calendar, day_name);						/* 设置日期的名称 */
 	lv_calendar_set_today_date(calendar, &today_date);					/* 设置当前日期 */
 	lv_calendar_set_showed_date(calendar, &today_date);					/* 设置显示日期 */
 
@@ -99,9 +99,9 @@ void lv_obj_calender_test(void)
 	highlihted_days[0].month = 7;
 	highlihted_days[0].day = 26;
 
-	highlihted_days[2].year = today_date.year;
-	highlihted_days[2].month = today_date.month;
-	highlihted_days[2].day = today_date.day;
+	highlihted_days[1].year = today_date.year;
+	highlihted_days[1].month = today_date.month;
+	highlihted_days[1].day = today_date.day;
 
 	lv_calendar_set_highlighted_dates(calendar, highlihted_days, 2);	/* 设置高亮日期 */
 

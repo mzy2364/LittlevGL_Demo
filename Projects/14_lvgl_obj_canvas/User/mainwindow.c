@@ -15,6 +15,8 @@
 
 void lv_obj_canvas_test(void);
 
+LV_IMG_DECLARE(lvgl_logo)
+
 
 lv_point_t polyon_point[3] = { {200,20}, {200,100}, {350,50} };
 lv_point_t line_point[5] = { { 350, 30 }, { 350, 100 }, { 400, 100 }, { 400, 30 }, { 350, 30 } };
@@ -51,6 +53,7 @@ void lv_obj_canvas_test(void)
 
 	/* 新建个样式 */
 	static lv_style_t style_desktop;
+	static lv_style_t style_draw;
 
 	lv_style_copy(&style_desktop, &lv_style_scr);
 	style_desktop.body.main_color = LV_COLOR_BLUE;		/* 设置底色 */
@@ -65,20 +68,35 @@ void lv_obj_canvas_test(void)
 	lv_obj_set_style(scr, &style_desktop);				/* 设置样式 */
 
 
-	uint16_t *buf = lv_mem_alloc(LV_HOR_RES*LV_VER_RES * 2);		/* 申请一个屏幕大小的缓冲区供画布使用 */
+	lv_style_copy(&style_draw, &lv_style_scr);
+	style_draw.body.main_color = LV_COLOR_BLUE;
+	style_draw.body.grad_color = style_draw.body.main_color;
+	style_draw.line.color = LV_COLOR_GREEN;
+
+	lv_color_t *buf = (lv_color_t*)lv_mem_alloc(LV_HOR_RES*LV_VER_RES * 2);		/* 申请一个屏幕大小的缓冲区供画布使用 */
 	lv_obj_t *canvas = lv_canvas_create(scr, NULL);					/* 创建 canvas 控件 */
 
 	lv_canvas_set_buffer(canvas, buf, LV_HOR_RES, LV_VER_RES, LV_IMG_CF_TRUE_COLOR);	/* 设置缓冲区 */
 
-	lv_canvas_draw_rect(canvas, 100, 100, 100, 100, &lv_style_scr);			/* 画矩形 */
+	//lv_canvas_set_palette(canvas, 3, LV_COLOR_RED);
 
-	lv_canvas_draw_text(canvas, 10, 10, 200, &lv_style_scr, "hello world", LV_LABEL_ALIGN_LEFT);	/* 画文字 */
+	lv_canvas_draw_rect(canvas, 100, 100, 100, 100, &style_draw);			/* 画矩形 */
 
-	lv_canvas_draw_arc(canvas, 50, 100, 30, 0, 270, &lv_style_scr);			/* 画圆 */
+	lv_canvas_draw_text(canvas, 10, 10, 200, &style_draw, "hello world", LV_LABEL_ALIGN_LEFT);	/* 画文字 */
 
-	lv_canvas_draw_polygon(canvas, polyon_point, 3, &lv_style_scr);			/* 画区域 */
+	lv_canvas_draw_img(canvas, 100, 100, &lvgl_logo, &style_draw);			/* 画图像 */
+
+	lv_canvas_draw_arc(canvas, 50, 100, 30, 0, 270, &style_draw);			/* 画圆 */
+
+	lv_canvas_draw_polygon(canvas, polyon_point, 3, &style_draw);			/* 画区域 */
 	
-	lv_canvas_draw_line(canvas, line_point, 5, &lv_style_scr);				/* 画线 */
+	lv_canvas_draw_line(canvas, line_point, 5, &style_draw);				/* 画线 */
+
+	/* 图像的旋转显示 */
+	lv_canvas_rotate(canvas, &lvgl_logo, 30, 0, 300, 0, 0);
+	lv_canvas_rotate(canvas, &lvgl_logo, 60, 200, 300, lvgl_logo.header.w / 2, lvgl_logo.header.h / 2);
+	lv_canvas_rotate(canvas, &lvgl_logo, -30, 0, 450, lvgl_logo.header.w / 2, lvgl_logo.header.h / 2);
+
 
 	lv_obj_t *btn = lv_btn_create(canvas, NULL);			/* 创建位于画布上的按钮 */
 	lv_obj_set_pos(btn, 300, 130);							/* 设置按钮坐标 */

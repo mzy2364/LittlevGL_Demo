@@ -80,29 +80,35 @@ void lv_obj_list_test(void)
 
 
 	/* 给list添加按钮,直接添加中文不能显示,需要添加按钮的时候文本设置为NULL,然后添加label到按钮 */
+	/* 也可以添加中文后获取label控件的指针，然后设置其样式和尺寸等 */
 	/* 图标用库自带的或者自己创建的都可以 */
 	lv_obj_t *btn_list;
 	lv_obj_t *label;
 
-	btn_list = lv_list_add_btn(list, LV_SYMBOL_FILE, NULL);
-	label = lv_label_create(btn_list,NULL);
-	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_cn_16);
-	lv_label_set_text(label,"新建");
+	btn_list = lv_list_add_btn(list, LV_SYMBOL_FILE, "新建");			/* 添加按钮到list,符号字体作为图标 */
+	label = lv_list_get_btn_label(btn_list);							/* 获取btn上面的label控件 */
+	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_cn_16);		/* 设置label的样式 */
+	lv_obj_set_height(label, 32);										/* 设置label的高度,因为默认字体的高度低于汉字字体的,不重新设置高度可能显示不全 */
+	
 
-	btn_list = lv_list_add_btn(list, LV_SYMBOL_DIRECTORY, NULL);
-	label = lv_label_create(btn_list, NULL);
-	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_cn_16);
-	lv_label_set_text(label, "打开");
 
-	btn_list = lv_list_add_btn(list, &close_img, NULL);
+	btn_list = lv_list_add_btn(list, LV_SYMBOL_DIRECTORY, "打开文件功能");
+	label = lv_list_get_btn_label(btn_list);
+	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_cn_16);
+	lv_obj_set_height(label, 32);
+
+
+	btn_list = lv_list_add_btn(list, &close_img, NULL);				/* 添加按钮到list,图像源作为图标 */
 	label = lv_label_create(btn_list, NULL);
 	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_cn_16);
 	lv_label_set_text(label, "关闭");
+	lv_btn_set_toggle(btn_list, true);
 
 	btn_list = lv_list_add_btn(list, &edit_img, NULL);
 	label = lv_label_create(btn_list, NULL);
 	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_cn_16);
 	lv_label_set_text(label, "编辑");
+	lv_btn_set_toggle(btn_list,true);
 
 	btn_list = lv_list_add_btn(list, &save_img, NULL);
 	label = lv_label_create(btn_list, NULL);

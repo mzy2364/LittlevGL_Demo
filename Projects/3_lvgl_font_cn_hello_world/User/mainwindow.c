@@ -12,7 +12,7 @@
 #include "gui_user.h"
 
 /* 引入字体,等同于extern */
-LV_FONT_DECLARE(font_hello)
+LV_FONT_DECLARE(font1)
 
 
 void lv_font_cn_test(void);
@@ -41,8 +41,8 @@ void lv_font_cn_test(void)
 	
 	static lv_style_t style_cn;								/* 定义新的样式,请注意使用 static 或者全局变量 */
 	lv_style_copy(&style_cn, &lv_style_pretty_color);		/* 复制style的属性 */
-	style_cn.text.font = &font_hello;						/* 设置新字体 */
-	style_cn.text.color = LV_COLOR_BLUE;					/* 设置文字颜色 */
+	style_cn.text.font = &font1;						/* 设置新字体 */
+	style_cn.text.color = LV_COLOR_BLACK;					/* 设置文字颜色 */
 	
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	

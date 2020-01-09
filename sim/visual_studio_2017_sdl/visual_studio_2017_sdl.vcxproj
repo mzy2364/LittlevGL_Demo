@@ -88,7 +88,8 @@
       <AdditionalIncludeDirectories>$(ProjectDir)\SDL2\include;$(ProjectDir);..\..\lvgl_app;.\lvgl\src;.\lvgl;..\..\sd_add_file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsC</CompileAs>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
-      <AdditionalOptions>/utf-8</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -130,10 +131,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lvgl_app\app_led.c" />
-    <ClCompile Include="..\..\lvgl_app\app_wechat.c" />
     <ClCompile Include="..\..\lvgl_app\gui_user.c" />
-    <ClCompile Include="..\..\Projects\6_lvgl_demo_desktop\User\mainwindow.c" />
+    <ClCompile Include="..\..\lvgl_app\image\lvgl_logo.c" />
+    <ClCompile Include="..\..\Projects\25_lvgl_obj_page\User\mainwindow.c" />
     <ClCompile Include="font\gb2312_puhui12.c" />
     <ClCompile Include="font\gb2312_puhui16.c" />
     <ClCompile Include="font\gb2312_puhui24.c" />

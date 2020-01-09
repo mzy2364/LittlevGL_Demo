@@ -78,7 +78,9 @@ void lv_obj_bar_test(void)
 	lv_obj_align(bar1, NULL, LV_ALIGN_IN_TOP_MID, 0, 0);	/* 设置位置 */
 
 	lv_obj_t *bar2 = lv_bar_create(scr, NULL);		/* 创建bar控件 */
-	lv_bar_set_range(bar2, 0, 100);					/* 设置范围 */
+	lv_bar_set_sym(bar2, true);						/* 启用对称 */
+	lv_bar_set_range(bar2, -100, 100);					/* 设置范围 */
+	lv_bar_set_value(bar2, 50, LV_ANIM_ON);		/* 设置bar的值,动画显示打开 */
 	lv_obj_align(bar2, bar1, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);	/* 设置位置 */
 
 	lv_task_create(task_change_bar, 100, LV_TASK_PRIO_LOW, bar2);	/* 创建个任务定期修改bar的值 */

@@ -1072,6 +1072,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\lvgl_app\font\font_hello.c</FilePath>
             </File>
+            <File>
+              <FileName>font1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\font1.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -110,7 +110,6 @@ void lv_obj_btnm_test(void)
 	lv_obj_set_style(label_btnm1, &style_cn_32);		/* 设置中文字体的样式 */
 	lv_obj_align(label_btnm1, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);	/* 设置位置 */
 
-
 }
 
 

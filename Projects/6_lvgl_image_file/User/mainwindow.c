@@ -33,7 +33,7 @@ void lv_app_main(void)
 	
 	lv_font_cn_style_init();			/* 初始化中文字体 */
 	
-	lv_load_img_bin_from_file(&image_bin1,"0:/lvgl/bg1.bin");	/* 从文件加载 bin 格式的图片到图片变量 */
+	lv_load_img_bin_from_file(&image_bin1,"0:/lvgl/bg01.bin");	/* 从文件加载 bin 格式的图片到图片变量 */
 	
 	lv_img_test();						/* 图片测试 */
 	

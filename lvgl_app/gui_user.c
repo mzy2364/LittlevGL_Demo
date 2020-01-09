@@ -155,6 +155,8 @@ uint8_t lv_load_img_bin_from_file(lv_img_dsc_t *image, const char *file_name)
 	
 	/* 为图片申请内存,如果图片需要一直显示,内存不用释放 */
 	pbuf = lv_mem_alloc(file_size);
+	if (pbuf == NULL)
+		return 1;
 	
 	res = f_read(&SDFile,pbuf,file_size,&br);
 	if((res != FR_OK) || (br == 0))
@@ -170,8 +172,8 @@ uint8_t lv_load_img_bin_from_file(lv_img_dsc_t *image, const char *file_name)
 	header |= (uint32_t)pbuf[1] << 8;
 	header |= (uint32_t)pbuf[0];
 	
-	rt_kprintf("header:0X%X\r\n",header);
-	rt_kprintf("width:%d height:%d\r\n", (uint16_t)(header >> 10), header >> 21);
+	//rt_kprintf("header:0X%X\r\n",header);
+	//rt_kprintf("width:%d height:%d\r\n", (uint16_t)(header >> 10), header >> 21);
 	
 	
 	/* 获取图片数据流 */
@@ -234,6 +236,8 @@ uint8_t lv_load_img_bin_from_file(lv_img_dsc_t *image, const char *file_name)
 
 
 	pbuf = lv_mem_alloc(file_size);
+	if (pbuf == NULL)
+		return 1;
 
 	printf("file_size:%d\n",file_size);
 
@@ -272,14 +276,8 @@ uint8_t lv_load_img_bin_from_file(lv_img_dsc_t *image, const char *file_name)
 	return 0;
 
 #endif
-	
 
-	
-
-	
 }
-
-
 
 
 
@@ -294,14 +292,16 @@ void gui_hal_led_toggle(void)
 {
 #if defined (__CC_ARM)
 	led_toggle();
-#else
+#elif defined (_MSC_VER)
 	
 #endif
 }
 
 
 
-
+#if defined (_MSC_VER)
+static uint32_t led_color_temp;
+#endif
 /**
   * @brief LED颜色设置
   * @param color-LED颜色,注意大小端
@@ -311,8 +311,8 @@ void gui_hal_led_set_color(uint32_t color)
 {
 #if defined (__CC_ARM)
 	led_color(color);
-#else
-	
+#elif defined (_MSC_VER)
+	led_color_temp = color;
 #endif
 }
 
@@ -325,8 +325,8 @@ uint32_t gui_hal_led_get_current_color(void)
 {
 #if defined (__CC_ARM)
 	return led_current_color();
-#else
-	return 0;
+#elif defined (_MSC_VER)
+	return led_color_temp;
 #endif
 
 }
@@ -344,7 +344,7 @@ void gui_hal_backlight(uint8_t light)
 	if(light <= 5)
 		light = 5;
 	lcd_backlight(light);
-#else
+#elif defined (_MSC_VER)
 	
 #endif
 	
@@ -368,7 +368,7 @@ uint8_t gui_hal_adc_light_get_ratio(void)
 	
 	return res;
 	
-#else
+#elif defined (_MSC_VER)
 	return rand() % 100;
 #endif
 	
@@ -392,7 +392,7 @@ uint8_t gui_hal_cpuusage_get(void)
 	cpu_usage_get(&cpu_major,NULL);
 	return cpu_major;
 	
-#else
+#elif defined (_MSC_VER)
 	return rand() % 100;
 #endif
 	

@@ -11,7 +11,7 @@
 
 #include "gui_user.h"
 
-const uint8_t *list1_option = "red\ngreen\nblue\nyellow\nwhite\nblack\n";
+const uint8_t *list1_option = "red\ngreen\nblue\nyellow\nwhite\nblack";
 
 void lv_obj_ddlist_test(void);
 
@@ -45,28 +45,28 @@ static void ddlist_event(lv_obj_t * obj, lv_event_t event)
 		switch(select)
 		{
 			case 0:
-				led_color(0X000000FF);
+				gui_hal_led_set_color(0X000000FF);
 				break;
 			case 1:
-				led_color(0X0000FF00);
+				gui_hal_led_set_color(0X0000FF00);
 				break;
 			case 2:
-				led_color(0X00FF0000);
+				gui_hal_led_set_color(0X00FF0000);
 				break;
 			case 3:
-				led_color(0X0000FFFF);
+				gui_hal_led_set_color(0X0000FFFF);
 				break;
 			case 4:
-				led_color(0X00FFFFFF);
+				gui_hal_led_set_color(0X00FFFFFF);
 				break;
 			case 5:
-				led_color(0X00000000);
+				gui_hal_led_set_color(0X00000000);
 				break;
 			default:
 				break;
 			
 		}
-		printf("Option: %s index:%d\n", buf, lv_ddlist_get_selected(obj));
+		//printf("Option: %s index:%d\n", buf, lv_ddlist_get_selected(obj));
 	}
 }
 
@@ -83,6 +83,7 @@ void lv_obj_ddlist_test(void)
 
 	/* 新建个样式 */
 	static lv_style_t style_desktop;
+	static lv_style_t style_ddlist_bg;
 
 
 	lv_style_copy(&style_desktop, &lv_style_scr);
@@ -97,14 +98,28 @@ void lv_obj_ddlist_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-	lv_obj_t *ddlist1 = lv_ddlist_create(scr,NULL);
-	lv_ddlist_set_anim_time(ddlist1,100);
-	lv_ddlist_set_options(ddlist1, list1_option);
-	lv_ddlist_set_fix_width(ddlist1, 150);
+	lv_obj_t *ddlist1 = lv_ddlist_create(scr, NULL);			/* 创建ddlist控件 */
 
-	lv_ddlist_set_draw_arrow(ddlist1, true);
-	lv_obj_align(ddlist1, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);
-	lv_obj_set_event_cb(ddlist1, ddlist_event);
+	/* 复制样式并修改一些属性 */
+	lv_style_copy(&style_ddlist_bg, lv_ddlist_get_style(ddlist1,LV_DDLIST_STYLE_BG));
+	style_ddlist_bg.body.padding.left = 10;
+	style_ddlist_bg.body.padding.right = 10;
+	style_ddlist_bg.body.padding.top = 10;
+	style_ddlist_bg.body.padding.bottom = 10;
+	style_ddlist_bg.text.line_space = 10;		/* 文字的垂直间距,这个属性可以增加每个选项的高度 */
+
+	/* 设置样式 */
+	lv_ddlist_set_style(ddlist1, LV_DDLIST_STYLE_BG, &style_ddlist_bg);
+
+	lv_ddlist_set_anim_time(ddlist1, 100);		/* 设置动画时间 */
+	lv_ddlist_set_options(ddlist1, list1_option);	/* 设置选项 */
+	lv_ddlist_set_fix_width(ddlist1, 150);			/* 设置宽度 */
+	//lv_ddlist_set_fix_height(ddlist1, 100);		/* 设置高度 */
+	//lv_ddlist_set_sb_mode(ddlist1, LV_SB_MODE_UNHIDE);	/* 设置滚动条模式 */
+	lv_ddlist_open(ddlist1, true);					/* 打开ddlist下拉 */
+	lv_ddlist_set_draw_arrow(ddlist1, true);		/* 显示下拉箭头 */
+	lv_obj_align(ddlist1, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);	/* 设置位置 */
+	lv_obj_set_event_cb(ddlist1, ddlist_event);		/* 设置事件回调函数 */
 
 }
 

@@ -75,7 +75,7 @@ typedef int16_t lv_coord_t;
 #define LV_MEM_CUSTOM      0
 #if LV_MEM_CUSTOM == 0
 /* Size of the memory used by `lv_mem_alloc` in bytes (>= 2kB)*/
-#  define LV_MEM_SIZE    (32U * 1024U * 1024U)
+#  define LV_MEM_SIZE    (10U * 1024U * 1024U)
 
 /* Complier prefix for a big array declaration */
 #  define LV_MEM_ATTR
@@ -240,7 +240,7 @@ typedef void * lv_indev_drv_user_data_t;            /*Type of user data in the i
  *================*/
 #define LV_THEME_LIVE_UPDATE    1   /*1: Allow theme switching at run time. Uses 8..10 kB of RAM*/
 
-#define LV_USE_THEME_TEMPL      0   /*Just for test*/
+#define LV_USE_THEME_TEMPL      1   /*Just for test*/
 #define LV_USE_THEME_DEFAULT    1   /*Built mainly from the built-in styles. Consumes very few RAM*/
 #define LV_USE_THEME_ALIEN      1   /*Dark futuristic theme*/
 #define LV_USE_THEME_NIGHT      1   /*Dark elegant theme*/

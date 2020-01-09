@@ -150,7 +150,30 @@ void lv_obj_checkbox_test(void)
 	lv_cb_set_style(cb3, LV_CB_STYLE_BOX_TGL_REL, &style_box_cb3);	/* 设置左边 box 被选中的样式 */
 
 	lv_obj_set_event_cb(cb3, cb3_event_cb);					/* 设置对象事件回调函数 */	
+
+
+
+	lv_obj_t *cb4 = lv_cb_create(scr, NULL);				/* 创建 checkbox 控件,从前面创建的控件复制属性 */
+	lv_cb_set_text(cb4, "Check");							/* 设置文字 */
+	lv_obj_align(cb4, cb3, LV_ALIGN_OUT_BOTTOM_MID, -100, 50);	/* 设置位置 */
+	lv_cb_set_checked(cb4, true);							/* 设置选中 */
+
+
+	lv_obj_t *cb5 = lv_cb_create(scr, NULL);				/* 创建 checkbox 控件,从前面创建的控件复制属性 */
+	lv_cb_set_text(cb5, "Uncheck");							/* 设置文字 */
+	lv_obj_align(cb5, cb3, LV_ALIGN_OUT_BOTTOM_MID, 0, 50);	/* 设置位置 */
+	lv_cb_set_checked(cb5, false);							/* 设置取消选中 */
+
+
+	lv_obj_t *cb6 = lv_cb_create(scr, NULL);				/* 创建 checkbox 控件,从前面创建的控件复制属性 */
+	lv_cb_set_text(cb6, "Inactive");							/* 设置文字 */
+	lv_obj_align(cb6, cb3, LV_ALIGN_OUT_BOTTOM_MID, 100, 50);	/* 设置位置 */
+	lv_cb_set_inactive(cb6);								/* 禁用 */
+	//lv_btn_set_state(cb6, LV_BTN_STATE_REL);
+
 }
+
+
 
 
 

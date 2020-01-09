@@ -38,11 +38,7 @@ void lv_app_main(void)
 	
 	lv_font_cn_style_init();			/* 初始化中文字体 */
 
-	lv_load_img_bin_from_file(&file_img,"0:/lvgl/file_img.bin");
 	lv_load_img_bin_from_file(&directory_img, "0:/lvgl/directory_img.bin");
-	lv_load_img_bin_from_file(&close_img, "0:/lvgl/close_img.bin");
-	lv_load_img_bin_from_file(&edit_img, "0:/lvgl/edit_img.bin");
-	lv_load_img_bin_from_file(&save_img, "0:/lvgl/save_img.bin");
 	
 	lv_obj_mbox_test();					/* 消息提示框控件测试 */
 	

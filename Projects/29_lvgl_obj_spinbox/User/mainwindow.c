@@ -99,8 +99,12 @@ void lv_obj_spinbox_test(void)
 	spinbox = lv_spinbox_create(scr, NULL);						/* 创建spinbox控件 */
 	lv_spinbox_set_digit_format(spinbox, 5, 3);					/* 设置数字格式,小数点前3位,总位数5位 */
 	lv_spinbox_step_prev(spinbox);								/* 编辑的位号左移动一位 */
-	lv_obj_set_width(spinbox, 100);
+	lv_spinbox_set_padding_left(spinbox, 0);
+	lv_obj_set_width(spinbox, 100);								/* 设置控件宽度 */
+	lv_spinbox_set_range(spinbox, -100, 100);					/* 设置范围,这里要注意上面动了小数点 */
 	lv_obj_align(spinbox, NULL, LV_ALIGN_IN_TOP_MID, 0, 50);
+	lv_spinbox_set_step(spinbox, 1);							/* 设置增量为1 */
+
 
 	/* 创建btnm控件用于控制spinbox */
 	lv_obj_t *btnm = lv_btnm_create(scr, NULL);

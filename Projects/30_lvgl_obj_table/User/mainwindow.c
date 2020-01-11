@@ -46,6 +46,8 @@ void lv_obj_table_test(void)
 
 	/* 新建个样式 */
 	static lv_style_t style_desktop;
+	static lv_style_t style_cell1;
+	static lv_style_t style_cell2;
 
 	lv_style_copy(&style_desktop, &lv_style_scr);
 	style_desktop.body.main_color = LV_COLOR_WHITE;		/* 设置底色 */
@@ -61,20 +63,36 @@ void lv_obj_table_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-	lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
+	//lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
 
 
-	lv_obj_t * table = lv_table_create(scr, NULL);
-	lv_table_set_col_cnt(table, 2);
-	lv_table_set_row_cnt(table, 7);
-	lv_table_set_col_width(table, 0, 100);
-	lv_table_set_col_width(table, 1, 150);
-	lv_table_set_cell_merge_right(table, 0, 0, true);
+	lv_style_copy(&style_cell1, &lv_style_plain);
+	style_cell1.body.border.width = 1;
+	style_cell1.body.border.color = LV_COLOR_BLACK;
 
-	lv_table_set_cell_align(table, 0, 0, LV_LABEL_ALIGN_CENTER);
+	
+	lv_style_copy(&style_cell2, &lv_style_plain);
+	style_cell2.body.border.width = 1;
+	style_cell2.body.border.color = LV_COLOR_BLACK;
+	style_cell2.body.main_color = LV_COLOR_SILVER;
+	style_cell2.body.grad_color = LV_COLOR_SILVER;
+
+
+	lv_obj_t * table = lv_table_create(scr, NULL);			/* 创建table控件 */
+	lv_table_set_col_cnt(table, 2);							/* 设置列的数量 */
+	lv_table_set_row_cnt(table, 7);							/* 设置行的数量 */
+	lv_table_set_col_width(table, 0, 100);					/* 设置列的宽度 */
+	lv_table_set_col_width(table, 1, 150);					/* 设置列的宽度 */
+	lv_table_set_cell_merge_right(table, 0, 0, true);		/* 合并单元格 */
+	lv_table_set_style(table, LV_TABLE_STYLE_CELL1, &style_cell1);
+	lv_table_set_style(table, LV_TABLE_STYLE_CELL2, &style_cell2);
+	lv_table_set_style(table, LV_TABLE_STYLE_BG, &lv_style_transp_tight);
+
+	lv_table_set_cell_align(table, 0, 0, LV_LABEL_ALIGN_CENTER);	/* 第0行第0列居中对齐 */
+
 
 	lv_table_set_cell_type(table, 0, 0, 2);
-	lv_table_set_cell_type(table, 0, 1, 2);
+
 
 	lv_table_set_cell_value(table, 0, 0, "Bison-Board");
 	lv_table_set_cell_value(table, 1, 0, "MCU");
@@ -94,6 +112,8 @@ void lv_obj_table_test(void)
 	lv_table_set_cell_value(table, 6, 1, "WIFI+2.4G");
 
 	lv_obj_align(table, NULL, LV_ALIGN_IN_TOP_MID, 0, 10);
+
+
 
 }
 

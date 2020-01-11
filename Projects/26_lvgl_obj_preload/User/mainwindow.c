@@ -72,10 +72,10 @@ void lv_obj_preload_test(void)
 	lv_obj_align(preload, NULL, LV_ALIGN_IN_TOP_MID, 0, 10);/* 设置位置 */
 	lv_preload_set_style(preload, LV_PRELOAD_STYLE_MAIN, &style_preload);	/* 设置样式 */
 
-	lv_preload_set_arc_length(preload, 60);					/* 弧的角度 */
+	lv_preload_set_arc_length(preload, 180);					/* 弧的角度 */
 	lv_preload_set_spin_time(preload, 800);					/* 旋转时长 */
-	lv_preload_set_type(preload, LV_PRELOAD_TYPE_FILLSPIN_ARC);	/* 旋转弧线,在顶部放慢速度,拉伸弧线 */
-
+	lv_preload_set_type(preload, LV_PRELOAD_TYPE_SPINNING_ARC);	/* 旋转类型 */
+	lv_preload_set_dir(preload, LV_PRELOAD_DIR_BACKWARD);		/* 旋转方向 */
 }
 
 

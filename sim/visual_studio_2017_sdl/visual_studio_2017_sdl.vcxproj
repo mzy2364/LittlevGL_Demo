@@ -133,7 +133,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\lvgl_app\gui_user.c" />
     <ClCompile Include="..\..\lvgl_app\image\lvgl_logo.c" />
-    <ClCompile Include="..\..\Projects\25_lvgl_obj_page\User\mainwindow.c" />
+    <ClCompile Include="..\..\Projects\31_lvgl_obj_tabview\User\mainwindow.c" />
     <ClCompile Include="font\gb2312_puhui12.c" />
     <ClCompile Include="font\gb2312_puhui16.c" />
     <ClCompile Include="font\gb2312_puhui24.c" />

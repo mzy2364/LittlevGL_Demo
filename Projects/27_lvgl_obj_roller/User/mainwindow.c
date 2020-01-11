@@ -74,13 +74,13 @@ static void roller_event_cb(lv_obj_t * obj, lv_event_t event)
 		strcat(date_buf, "   ");
 		memset(buf, 0, sizeof(buf));
 
-		sprintf(buf,"%02d",lv_roller_get_selected(roller_hour)+1);
+		sprintf(buf,"%02d",lv_roller_get_selected(roller_hour));
 		//lv_roller_get_selected_str(roller_hour, buf, sizeof(buf));
 		strcat(date_buf, buf);
 		strcat(date_buf, ":");
 		memset(buf, 0, sizeof(buf));
 
-		sprintf(buf, "%02d", lv_roller_get_selected(roller_min) + 1);
+		sprintf(buf, "%02d", lv_roller_get_selected(roller_min));
 		//lv_roller_get_selected_str(roller_min, buf, sizeof(buf));
 		strcat(date_buf, buf);
 		strcat(date_buf, " ");
@@ -139,7 +139,7 @@ void lv_obj_roller_test(void)
 		strcat(date,buf);
 	}
 
-	for (i = 1; i <= 23; i++)
+	for (i = 0; i <= 23; i++)
 	{
 		if (i < 23)
 			sprintf(buf, "%d\n", i);
@@ -148,7 +148,7 @@ void lv_obj_roller_test(void)
 		strcat(hour, buf);
 	}
 
-	for (i = 1; i <= 59; i++)
+	for (i = 0; i <= 59; i++)
 	{
 		if (i < 59)
 			sprintf(buf, "%d\n", i);

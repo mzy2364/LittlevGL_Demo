@@ -77,18 +77,19 @@ void lv_obj_tabview_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-	lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
+	//lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
 
-	//lv_obj_t *img_bg = lv_img_create(scr, NULL);						/* 创建背景 */
-	//lv_img_set_src(img_bg, &img_desktop);
+	lv_obj_t *img_bg = lv_img_create(scr, NULL);						/* 创建背景 */
+	lv_img_set_src(img_bg, &img_desktop);
 	
 
 	lv_obj_t *tabview = lv_tabview_create(scr, NULL);					/* 创建tabview控件 */
 	//lv_tabview_set_btns_hidden(tabview, true);						/* 隐藏导航栏目 */
+	//lv_tabview_set_btns_pos(tabview, LV_TABVIEW_BTNS_POS_RIGHT);			/* 设置导航栏位置 */
 	lv_style_copy(&style_tabview,lv_tabview_get_style(tabview,LV_TABVIEW_STYLE_BG));
 	style_tabview.body.opa = 0;											/* 设置全透明 */
 	lv_tabview_set_style(tabview, LV_TABVIEW_STYLE_BG, &style_tabview);
-	lv_tabview_set_anim_time(tabview, 10);								/* 设置动画时间 */
+	lv_tabview_set_anim_time(tabview, 100);								/* 设置动画时间 */
 
 
 	/* 添加3个页面 */
@@ -117,6 +118,9 @@ void lv_obj_tabview_test(void)
 	lv_label_set_body_draw(label, true);
 	lv_label_set_style(label, LV_LABEL_STYLE_MAIN, &style_label);
 	lv_label_set_text(label, "Third tab");
+
+
+
 
 
 }

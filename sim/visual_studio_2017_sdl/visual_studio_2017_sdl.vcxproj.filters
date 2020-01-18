@@ -507,7 +507,7 @@
     <ClCompile Include="..\..\lvgl_app\image\lvgl_logo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Projects\31_lvgl_obj_tabview\User\mainwindow.c">
+    <ClCompile Include="..\..\Projects\34_lvgl_obj_win\User\mainwindow.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

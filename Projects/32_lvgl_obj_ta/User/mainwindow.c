@@ -71,8 +71,7 @@ void lv_obj_ta_test(void)
 
 	/* 新建个样式 */
 	static lv_style_t style_desktop;
-	static lv_style_t style_tabview;
-	static lv_style_t style_label;
+	static lv_style_t style_ta_bg;
 
 	lv_style_copy(&style_desktop, &lv_style_scr);
 	style_desktop.body.main_color = LV_COLOR_WHITE;		/* 设置底色 */
@@ -88,7 +87,11 @@ void lv_obj_ta_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-	lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
+	//lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
+
+	lv_style_copy(&style_ta_bg, &lv_style_pretty);
+	style_ta_bg.text.font = &lv_font_roboto_28;
+	style_ta_bg.text.color = LV_COLOR_RED;
 
 	lv_obj_t *ta_ssid = lv_ta_create(scr, NULL);			/* 创建ta控件 */
 	lv_ta_set_text(ta_ssid, "");							/* 设置空文本 */
@@ -96,7 +99,9 @@ void lv_obj_ta_test(void)
 	lv_obj_set_width(ta_ssid, LV_HOR_RES / 2 - 20);			/* 宽度 */
 	lv_obj_set_pos(ta_ssid, 5, 20);							/* 设置坐标 */
 	lv_obj_set_event_cb(ta_ssid, ta_event_cb);				/* 设置事件回调函数 */
-	lv_ta_set_max_length(ta_ssid, 16);						/* 设置最大长度 */
+	lv_ta_set_max_length(ta_ssid, 16);				/* 设置最大长度 */
+	lv_ta_set_style(ta_ssid, LV_TA_STYLE_BG, &style_ta_bg);
+
 
 	/* 创建label用于引导用户输入 */
 	lv_obj_t * label_ssid = lv_label_create(lv_scr_act(), NULL);
@@ -163,6 +168,15 @@ void lv_obj_ta_test(void)
 	lv_kb_set_ta(kb, ta_ssid);
 	lv_kb_set_cursor_manage(kb, true);
 
+	//lv_obj_t *ta = lv_ta_create(scr,NULL);
+	//lv_ta_add_char(ta,c);			/* 向ta控件添加字符 */
+	//lv_ta_add_text(ta,"text");		/* 向ta控件添加文本 */
+	//lv_ta_set_text(ta,"text");		/* 设置ta控件的文本 */
+
+	//lv_ta_del_char(ta);				/* 删除字符,退格删除,删除左侧字符 */
+	//lv_ta_del_char_forward(ta);		/* 正常删除,删除右侧字符 */
+	//lv_ta_set_placeholder_text(ta, "Placeholder text");	/* 设置占位符 */
+	//
 
 }
 

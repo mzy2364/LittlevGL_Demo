@@ -68,12 +68,10 @@ void lv_obj_tileview_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-	lv_theme_set_current(lv_theme_material_init(210, NULL));			/* 设置主题 */
-
 
 	static lv_point_t valid_pos[] = { { 0, 0 }, { 0, 1 }, { 1, 1 } };
 	lv_obj_t *tileview;
-	tileview = lv_tileview_create(lv_scr_act(), NULL);
+	tileview = lv_tileview_create(scr, NULL);
 	lv_tileview_set_valid_positions(tileview, valid_pos, 3);
 	lv_tileview_set_edge_flash(tileview, true);
 
@@ -82,12 +80,12 @@ void lv_obj_tileview_test(void)
 	lv_obj_set_style(tile1, &lv_style_pretty);
 	lv_tileview_add_element(tileview, tile1);
 
-	/*Tile1: just a label*/
+	/* 向页面一添加一个label */
 	lv_obj_t * label = lv_label_create(tile1, NULL);
 	lv_label_set_text(label, "Tile 1");
 	lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 0);
 
-	/*Tile2: a list*/
+	/* 向页面二添加一个list */
 	lv_obj_t * list = lv_list_create(tileview, NULL);
 	lv_obj_set_size(list, LV_HOR_RES, LV_VER_RES);
 	lv_obj_set_pos(list, 0, LV_VER_RES);
@@ -120,7 +118,7 @@ void lv_obj_tileview_test(void)
 	list_btn = lv_list_add_btn(list, NULL, "Eight");
 	lv_tileview_add_element(tileview, list_btn);
 
-	/*Tile3: a button*/
+	/* 向页面三添加一个按钮 */
 	lv_obj_t * tile3 = lv_obj_create(tileview, tile1);
 	lv_obj_set_pos(tile3, LV_HOR_RES, LV_VER_RES);
 	lv_tileview_add_element(tileview, tile3);

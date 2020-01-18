@@ -69,20 +69,22 @@ void lv_obj_win_test(void)
 	lv_obj_t *scr = lv_disp_get_scr_act(NULL);				/* 获取当前屏幕 */
 	lv_obj_set_style(scr, &style_desktop);					/* 设置样式 */
 
-	lv_obj_t * win = lv_win_create(scr, NULL);
+	lv_obj_t * win = lv_win_create(scr, NULL);				/* 创建win控件 */
 	lv_style_copy(&style_win_header, lv_win_get_style(win, LV_WIN_STYLE_HEADER));
 	lv_style_copy(&style_win_bg, lv_win_get_style(win, LV_WIN_STYLE_BG));
-	style_win_bg.body.border.width = 3;
-	style_win_bg.body.border.color = style_win_header.body.main_color;
-	lv_win_set_style(win, LV_WIN_STYLE_BG, &style_win_bg);
-	lv_win_set_title(win, "Window title");
-	lv_obj_set_size(win,lv_obj_get_width(scr)-50,lv_obj_get_height(scr)/2);
-	lv_win_set_drag(win, true);
+	style_win_bg.body.border.width = 3;						/* 边框宽度 */
+	style_win_bg.body.border.color = style_win_header.body.main_color;	/* 边框颜色 */
+	lv_win_set_style(win, LV_WIN_STYLE_BG, &style_win_bg);		/* 设置win控件的样式 */
+	lv_win_set_title(win, "Window title");						/* 设置win控件的标题 */
+	lv_win_set_btn_size(win,100);								/* 设置win控件的控制按钮尺寸 */
+	lv_obj_set_size(win,lv_obj_get_width(scr)-50,lv_obj_get_height(scr)/2);	/* 设置控件尺寸 */
+	lv_win_set_drag(win, true);									/* 设置win控件可拖动 */
 
-	lv_obj_t * close_btn = lv_win_add_btn(win, LV_SYMBOL_CLOSE);
-	lv_obj_set_event_cb(close_btn, lv_win_close_event_cb);
-	lv_win_add_btn(win, LV_SYMBOL_SETTINGS);
+	lv_obj_t * close_btn = lv_win_add_btn(win, LV_SYMBOL_CLOSE);	/* 创建一个关闭按钮 */
+	lv_obj_set_event_cb(close_btn, lv_win_close_event_cb);			/* 设置按钮的事件回调函数 */
+	lv_win_add_btn(win, LV_SYMBOL_SETTINGS);						/* 添加一个控制按钮 */
 
+	/* 在主页面创建一个label */
 	lv_obj_t * txt = lv_label_create(win, NULL);
 	lv_label_set_text(txt, "This is the content of the window\n\n"
 		"You can add control buttons to\n"
@@ -94,9 +96,6 @@ void lv_obj_win_test(void)
 
 }
 
-/*
-git remote add origin git@gitee.com:mzy2364/LittlevGL_Demo.git
-*/
 
 
 

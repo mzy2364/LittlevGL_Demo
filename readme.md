@@ -66,7 +66,7 @@ GUI 与硬件隔离，用户只需关心 gui_user.c 的兼容性问题，如果�
 ##  下载源码
 
 ~~~c
-git clone https://gitee.com/mzy2364/LittlevGL_Demo
+git clone https://github.com/mzy2364/LittlevGL_Demo
 ~~~
 
 ## 支持我们
